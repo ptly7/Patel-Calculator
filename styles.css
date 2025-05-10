@@ -1,0 +1,97 @@
+:root {
+      --bg-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      --primary-color: #00ff88;
+      --error-red: #ff4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      padding: 1rem;
+    }
+
+    .calculator {
+      background: rgba(40, 40, 40, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    }
+
+    .display {
+      color: white;
+      font-size: 2.5rem;
+      text-align: right;
+      padding: 1.5rem 1rem;
+      margin-bottom: 1rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      min-height: 88px;
+      transition: color 0.3s ease;
+      overflow-x: auto;
+      word-wrap: break-word;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+    }
+
+    button {
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: white;
+      padding: 1.2rem;
+      font-size: 1.4rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    button:active {
+      transform: scale(0.95);
+      background: rgba(255,255,255,0.15);
+    }
+
+    button::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      background: rgba(255, 255, 255, 0.3);
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transition: transform 0.4s ease;
+    }
+
+    button:focus::after {
+      transform: scale(1);
+    }
+
+    .operator { color: var(--primary-color); }
+    .error { color: var(--error-red); animation: errorShake 0.4s; }
+
+    @keyframes errorShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    @media (max-width: 380px) {
+      .calculator { transform: scale(0.95); }
+    }
